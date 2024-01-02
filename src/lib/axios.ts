@@ -7,3 +7,5 @@ export const axiosInstance = axios.create({
         'Content-Type': 'application/json',
     },
 });
+
+export const fetcher = (url: string) => axiosInstance.get(url).then(res => res.data)

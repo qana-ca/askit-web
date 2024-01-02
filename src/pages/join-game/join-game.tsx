@@ -1,32 +1,19 @@
-import { useEffect, useState } from "react"
-import { axiosInstance } from "../../lib/axios"
+import { fetcher } from "../../lib/axios"
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import useSWR from "swr";
 
 export const JoinGame = () => {
-    const [games, setGames] = useState([]);
-
-    const getAvailableGames = async () => {
-        return await axiosInstance.get('/lobby-manager').then((res) => {
-            return res.data;
-        }).catch((err) => {
-            throw err;
-        })
-    }
-
-    useEffect(() => {
-        getAvailableGames().then((games) => {
-            setGames(games);
-        }).catch((err) => {
-            console.error(err)
-        })
-    }, [])
+    const { data: games, error, isLoading } = useSWR('/lobby-manager', fetcher)
 
     return (
         <div className="w-screen h-screen flex flex-col items-center justify-center">
-            {games.length === 0 ? <span>Нет доступных игр</span> : <span className="mb-3 font-semibold text-3xl">Доступные игры:</span>}
+            {isLoading && <span>Загрузка...</span>}
+            {error && <span>Ошибка загрузки</span>}
+            {games?.length > 0 ? <span className="mb-3 font-semibold text-3xl">Доступные игры:</span> : <span>Нет доступных игр</span>}
             {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                games.map((game: any) => {
+                games?.map((game: any) => {
                 return (
                     <div key={game.id} className="flex flex-col border mb-2 p-4 w-1/3 text-center cursor-pointer">
                         <span className="font-semibold">Название: {game.name}</span>
@@ -46,6 +33,8 @@ export const JoinGame = () => {
                 </div>
                 <button className="ml-3 px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">Присоединиться</button>
             </div>
+            {/* Или создать свою */}
+            <Link to="/create-game" className="mt-6"><Button>Создать свою игру</Button></Link>
         </div>
     )
 }
