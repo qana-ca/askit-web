@@ -7,6 +7,7 @@ import { RootPage } from './pages/root.tsx'
 import { JoinGame } from './pages/join-game/join-game.tsx'
 import { CreateGame } from './pages/create-game/create-game.tsx'
 import { SocketProvider } from './socket-provider.tsx'
+import { ThemeProvider } from './components/theme/theme-provider.tsx'
 
 const router = createBrowserRouter([
     {
@@ -24,12 +25,12 @@ const router = createBrowserRouter([
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <SocketProvider>
             <>
                 <RouterProvider router={router} />
                 <Toaster />
             </>
         </SocketProvider>
-    </>,
+    </ThemeProvider>,
 )
