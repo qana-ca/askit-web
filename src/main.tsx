@@ -6,29 +6,29 @@ import './styles/index.css'
 import { RootPage } from './pages/root.tsx'
 import { JoinGame } from './pages/join-game/join-game.tsx'
 import { CreateGame } from './pages/create-game/create-game.tsx'
-import { SocketProvider } from './socket-provider.tsx'
+import { SocketProvider } from './lib/socket-provider.tsx'
 import { ThemeProvider } from './components/theme/theme-provider.tsx'
-import { MenuLayout } from './menu-layout.tsx'
+import { MenuLayout } from './menu/menu-layout.tsx'
+import { PAGES } from './pages/pages.ts'
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: PAGES.MENU,
         element: <MenuLayout />,
         children: [
             {
-                path: '/',
+                path: PAGES.MENU,
                 element: <RootPage />
             },
             {
-                path: '/join-game',
+                path: PAGES.MENU_JOIN_GAME,
                 element: <JoinGame />
             },
             {
-                path: '/create-game',
+                path: PAGES.MENU_CREATE_GAME,
                 element: <CreateGame />
             }
         ]
-
     }
 ])
 

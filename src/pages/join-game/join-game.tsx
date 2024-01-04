@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import useSWR from "swr";
+import { PAGES } from "../pages";
 
 export const JoinGame = () => {
     const { data: games, error, isLoading } = useSWR('/lobby-manager', fetcher)
@@ -33,7 +34,7 @@ export const JoinGame = () => {
                 <Button variant="secondary">Присоединиться</Button>
             </div>
             {/* Или создать свою */}
-            <Link to="/create-game" className="mt-6" tabIndex={-1}><Button variant="secondary">Создать свою игру</Button></Link>
+            <Link to={PAGES.MENU_CREATE_GAME} className="mt-6" tabIndex={-1}><Button variant="secondary">Создать свою игру</Button></Link>
         </div>
     )
 }
