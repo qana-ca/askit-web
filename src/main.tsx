@@ -8,19 +8,27 @@ import { JoinGame } from './pages/join-game/join-game.tsx'
 import { CreateGame } from './pages/create-game/create-game.tsx'
 import { SocketProvider } from './socket-provider.tsx'
 import { ThemeProvider } from './components/theme/theme-provider.tsx'
+import { MenuLayout } from './menu-layout.tsx'
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <RootPage />
-    },
-    {
-        path: '/join-game',
-        element: <JoinGame />
-    },
-    {
-        path: '/create-game',
-        element: <CreateGame />
+        element: <MenuLayout />,
+        children: [
+            {
+                path: '/',
+                element: <RootPage />
+            },
+            {
+                path: '/join-game',
+                element: <JoinGame />
+            },
+            {
+                path: '/create-game',
+                element: <CreateGame />
+            }
+        ]
+
     }
 ])
 

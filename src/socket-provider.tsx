@@ -6,7 +6,7 @@ export const SocketProvider = ({ children }: any) => {
     useEffect(() => {
         socket.connect()
         socket.on("connect", () => {
-            toast.success('Connected to game server!')
+            toast.success('Вы успешно подключены к серверу игры.')
         })
 
         socket.on('server.game_message', (data) => {
@@ -17,7 +17,7 @@ export const SocketProvider = ({ children }: any) => {
         
         // On disconnect
         socket.on('disconnect', () => {
-            toast.error('Disconnected from game server!')
+            toast.error('Произошла ошибка. Отключение от сервера.')
         })
 
         return () => {
