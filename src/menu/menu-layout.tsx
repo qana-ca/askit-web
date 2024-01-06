@@ -10,7 +10,7 @@ const RootButton = ({ children, className, to}: any) => {
 
     return (
         <Link className="w-full" to={to} tabIndex={-1}>
-            <Button className={"w-full h-16 mb-4 " + className} variant={pathname === to ? 'default' : 'secondary'}>
+            <Button className={"w-full h-12 mb-4 " + className} variant={pathname === to ? 'default' : 'secondary'}>
                 {children}
             </Button>
         </Link>
