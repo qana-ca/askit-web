@@ -19,6 +19,8 @@ const RootButton = ({ children, className, to}: any) => {
 
 export const MenuLayout = () => {
     const [isConnected, setIsConnected] = useState(false);
+    // TODO: implement hook
+    const isOnline = useIsOnline();
 
     useEffect(() => {
         socket.on('connect', () => {
@@ -34,7 +36,7 @@ export const MenuLayout = () => {
             {/* Header */}
             <div className="left-1/4 absolute h-12 flex items-center w-3/4 px-2 border-b-[2px] border-primary">
                 <span>AskIT.space v.{APP_VERSION}</span>
-                <span className="ml-auto pr-2">Статус сервера:&nbsp;<span className="text-green-500">Онлайн</span></span>
+                <span className="ml-auto pr-2">Статус сервера:&nbsp;<span className="text-green-500">{isOnline}</span></span>
                 <span className="pl-2 border-l-[2px] border-emerald-600">Клиент: {isConnected ? <span className="text-green-500">Подключен</span> : <span className="text-red-500">Отключен</span>}</span>
             </div>
             {/* Left side */}
