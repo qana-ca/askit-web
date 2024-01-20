@@ -4,5 +4,5 @@ export const RootPage = () => {
             <h1>AskIT.space</h1>
             <span>%Тут описание проекта%</span>
         </div>
-    )
+    );
 };

@@ -1,4 +1,4 @@
-import { CreateGameForm } from "./create-game.form"
+import { CreateGameForm } from './create-game.form';
 
 export const CreateGame = () => {
     return (
@@ -6,5 +6,5 @@ export const CreateGame = () => {
             <h1 className="text-4xl font-semibold mb-12">Создание игры</h1>
             <CreateGameForm />
         </div>
-    )
-}
+    );
+};
